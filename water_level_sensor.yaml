@@ -1,0 +1,11 @@
+template:
+  - sensor:
+      - name: "Total Water Volume"
+        unit_of_measurement: "L"
+        default_entity_id: sensor.overhead_water_volume
+        state: "{{ (2000 - (states('sensor.esphome_web_cfdefc_ultrasonic_sensor') | float(0) * 1700)) | round(0) }}"
+
+      - name: "Overhead Water Level"
+        unit_of_measurement: "%"
+        default_entity_id: sensor.overhead_water_level
+        state: "{{ ((110 - (states('sensor.esphome_web_cfdefc_ultrasonic_sensor') | float(0) * 100)) * 1.1112) | round(0) }}"
